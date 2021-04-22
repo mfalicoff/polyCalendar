@@ -47,5 +47,12 @@ jobs:
     - name: Run lint
       run: |
         echo lint check back end
-        cd backend
+        cd server
         npm run lint
+
+      # Runs a set of commands using the runners shell
+    - name: Run server tests
+      run: |
+        echo tests backen-end
+        cd server
+        npm run test

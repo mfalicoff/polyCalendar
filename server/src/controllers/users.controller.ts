@@ -6,7 +6,6 @@ import userService from '@services/users.service';
 class UsersController {
     public userService = new userService();
 
-    // TODO secure route by admin
     public getUserById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userId: string = req.params.id;
@@ -18,7 +17,6 @@ class UsersController {
         }
     };
 
-    // TODO secure route by admin
     public createUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userData: CreateUserDto = req.body;
@@ -36,7 +34,6 @@ class UsersController {
         }
     };
 
-    // TODO secure route by token
     public updateUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userId: string = req.params.id;
@@ -49,7 +46,6 @@ class UsersController {
         }
     };
 
-    // TODO secure route by token
     public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userId: string = req.params.id;
