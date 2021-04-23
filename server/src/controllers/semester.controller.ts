@@ -1,15 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 import { RequestWithUser } from '@interfaces/auth.interface';
+import ClassCrawler from '@services/crawler.service';
 
-class SemesterController{
+class SemesterController {
+    crawler = new ClassCrawler();
 
     public scrapeClasses = async (req: RequestWithUser, res: Response, next: NextFunction) => {
         try {
-            console.log(req.user, req)
+            const test = await this.crawler.getClasses();
             // const userData: CreateUserDto = req.body;
             // const signUpUserData: User = await this.authService.signup(userData);
             //
-            // res.status(201).json({ data: signUpUserData, message: 'signup' });
+            res.status(200).json({ data: test, message: 'scraped classes' });
         } catch (error) {
             next(error);
         }
@@ -27,4 +29,4 @@ class SemesterController{
     };
 }
 
-export default SemesterController
+export default SemesterController;

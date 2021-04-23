@@ -1,7 +1,7 @@
-import { PracticeSection, TheorySection } from '@interfaces/class/sections.interface';
+import { AllSections } from '@interfaces/class/sections.interface';
 
 export interface Class {
-    _id: string;
+    _id?: string;
     name: string;
-    schedule: TheorySection | PracticeSection[];
+    schedule: AllSections;
 }

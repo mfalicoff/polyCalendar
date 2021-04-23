@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import Route from '@interfaces/routes.interface';
-import authMiddleware from '@middlewares/auth.middleware';
 import SemesterController from '@controllers/semester.controller';
 
 class SemesterRoute implements Route {
