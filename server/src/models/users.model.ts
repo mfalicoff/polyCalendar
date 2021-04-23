@@ -16,6 +16,10 @@ const userSchema: Schema = new Schema({
         type: String,
         required: true,
     },
+    admin: {
+        type: Boolean,
+        required: false,
+    }
 });
 
 userSchema.set('toJSON', {

@@ -1,4 +1,3 @@
-import config from 'config';
 import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import HttpException from '@exceptions/HttpException';
@@ -10,7 +9,7 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
         const Authorization = req.cookies['Authorization'] || req.header('Authorization').split('Bearer ')[1] || null;
         console.log('ok1');
         if (Authorization) {
-            const secretKey: string = config.get('secretKey');
+            const secretKey: string = process.env.SECRET;
             console.log('ok');
             const verificationResponse = (await jwt.verify(Authorization, secretKey)) as DataStoredInToken;
             const userId = verificationResponse._id;

@@ -8,6 +8,7 @@ import { User } from '@interfaces/users.interface';
 import userModel from '@models/users.model';
 import { isEmpty } from '@utils/util';
 
+
 class AuthService {
     public users = userModel;
 
@@ -25,13 +26,13 @@ class AuthService {
 
     public async login(userData: CreateUserDto): Promise<{ cookie: string; findUser: User }> {
         if (isEmpty(userData)) throw new HttpException(400, 'You\'re not userData');
-
+        console.log('here1')
         const findUser: User = await this.users.findOne({ email: userData.email });
         if (!findUser) throw new HttpException(409, `You're email ${userData.email} not found`);
 
         const isPasswordMatching: boolean = await bcrypt.compare(userData.password, findUser.password);
         if (!isPasswordMatching) throw new HttpException(409, 'You\'re password not matching');
-
+        console.log('here2')
         const tokenData = this.createToken(findUser);
         const cookie = this.createCookie(tokenData);
 
@@ -48,8 +49,9 @@ class AuthService {
     }
 
     public createToken(user: User): TokenData {
+        console.log('here3')
         const dataStoredInToken: DataStoredInToken = { _id: user._id };
-        const secret: string = config.get('secretKey');
+        const secret: string = process.env.SECRET;
         const expiresIn: number = 60 * 60;
 
         return { expiresIn, token: jwt.sign(dataStoredInToken, secret, { expiresIn }) };

@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config();
+}
 import { cleanEnv, port, str } from 'envalid';
 
 const validateEnv = () => {
