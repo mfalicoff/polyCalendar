@@ -1,5 +1,4 @@
 import SemesterRoute from '@routes/semester.route';
-
 process.env['NODE_CONFIG_DIR'] = __dirname + '/config';
 
 require('dotenv').config();

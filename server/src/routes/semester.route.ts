@@ -14,6 +14,7 @@ class SemesterRoute implements Route {
     private initializeRoutes() {
         this.router.post(`${this.path}/scrapeClasses`, /*authMiddleware,*/ this.semesterController.scrapeClasses);
         this.router.post(`${this.path}/createCalendar`, /*authMiddleware,*/ this.semesterController.createCalendar);
+        this.router.get(`${this.path}/classes/get`, this.semesterController.getAllClasses);
     }
 }
 
