@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from "express";
-import { RequestWithUser } from "@interfaces/auth.interface";
-import ClassCrawler from "@services/crawler.service";
-import { Class } from "@interfaces/class/class.interface";
-import ClassService from "@services/class.service";
+import { NextFunction, Request, Response } from 'express';
+import { RequestWithUser } from '@interfaces/auth.interface';
+import ClassCrawler from '@services/crawler.service';
+import { Class } from '@interfaces/class/class.interface';
+import ClassService from '@services/class.service';
 
 class SemesterController {
     crawler = new ClassCrawler();
@@ -13,7 +13,7 @@ class SemesterController {
             const allClassesScraped = await this.crawler.getClasses();
             console.log(allClassesScraped);
             const superclasses = await this.saveClasses(allClassesScraped);
-            res.status(201).json({ data: superclasses, message: "scraped classes" });
+            res.status(201).json({ data: superclasses, message: 'scraped classes' });
         } catch (error) {
             next(error);
         }
@@ -33,7 +33,7 @@ class SemesterController {
     public getAllClasses = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const allClasses = await this.classService.getAllClasses();
-            res.status(200).json({ data: allClasses, message: "all classes" })
+            res.status(200).json({ data: allClasses, message: 'all classes' });
         } catch (error) {
             next(error);
         }
@@ -42,11 +42,11 @@ class SemesterController {
     private saveClasses = async (scrapedClasses: Class[]): Promise<Class[]> => {
         const returnClass: Class[] = [];
         await Promise.all(
-            scrapedClasses.map(async (singleClass) => {
+            scrapedClasses.map(async singleClass => {
                 const savedClass = await this.classService.createClass(singleClass);
                 console.log(savedClass);
                 returnClass.push(savedClass);
-            })
+            }),
         );
         return returnClass;
     };

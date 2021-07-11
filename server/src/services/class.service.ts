@@ -1,10 +1,10 @@
-import bcrypt from "bcrypt";
-import { CreateUserDto } from "@dtos/users.dto";
-import HttpException from "@exceptions/HttpException";
-import { User } from "@interfaces/users.interface";
-import { isEmpty } from "@utils/util";
-import classModel from "@models/class.model";
-import { Class } from "@interfaces/class/class.interface";
+import bcrypt from 'bcrypt';
+import { CreateUserDto } from '@dtos/users.dto';
+import HttpException from '@exceptions/HttpException';
+import { User } from '@interfaces/users.interface';
+import { isEmpty } from '@utils/util';
+import classModel from '@models/class.model';
+import { Class } from '@interfaces/class/class.interface';
 
 class ClassService {
     public classes = classModel;
@@ -24,11 +24,10 @@ class ClassService {
     // }
 
     public async createClass(classData: Class): Promise<Class> {
-
         const createdClass: Class = await this.classes.create({
-            ...classData
+            ...classData,
         });
-        console.log(createdClass)
+        console.log(createdClass);
         return createdClass;
     }
 
